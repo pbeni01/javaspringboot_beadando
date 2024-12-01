@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mozi Műsor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            width: 300px;
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        .card p {
+            margin: 5px 0;
+        }
+        .card strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Mozi Műsor</h1>
+</header>
+<main>
+    <!-- Filmek -->
+    <section class="section">
+        <h2>Filmek</h2>
+        <div class="card-container">
+            <div class="card" th:each="film : ${film}">
+                <h3 th:text="${film.filmcim}"></h3>
+                <p><strong>FKód:</strong> <span th:text="${film.fkod}"></span></p>
+                <p><strong>Színes:</strong> <span th:text="${film.szines} ? 'Igen' : 'Nem'"></span></p>
+                <p><strong>Szinkron:</strong> <span th:text="${film.szinkron}"></span></p>
+                <p><strong>Származás:</strong> <span th:text="${film.szarmazas}"></span></p>
+                <p><strong>Műfaj:</strong> <span th:text="${film.mufaj}"></span></p>
+                <p><strong>Hossz:</strong> <span th:text="${film.hossz}"></span> perc</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mozik -->
+    <section class="section">
+        <h2>Mozik</h2>
+        <div class="card-container">
+            <div class="card" th:each="mozi : ${mozi}">
+                <h3 th:text="${mozi.mozinev}"></h3>
+                <p><strong>Mozi Azonosító:</strong> <span th:text="${mozi.moziazon}"></span></p>
+                <p><strong>Ir. Szám:</strong> <span th:text="${mozi.irszam}"></span></p>
+                <p><strong>Cím:</strong> <span th:text="${mozi.cim}"></span></p>
+                <p><strong>Telefon:</strong> <span th:text="${mozi.telefon}"></span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Helyek -->
+    <section class="section">
+        <h2>Helyek</h2>
+        <div class="card-container">
+            <div class="card" th:each="hely : ${hely}">
+                <h3>Hely azonosító</h3>
+                <p><strong>FKód:</strong> <span th:text="${hely.fkod}"></span></p>
+                <p><strong>Mozi Azonosító:</strong> <span th:text="${hely.moziazon}"></span></p>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

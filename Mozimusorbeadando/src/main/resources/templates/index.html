@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoziMűsorok</title>
+    <style>
+        /* Alap stílusok */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navigációs sáv */
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #0056b3;
+        }
+        .user-info {
+            font-size: 14px;
+        }
+
+        /* Fő tartalom */
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .hero {
+            text-align: center;
+            background: #007bff;
+            color: white;
+            padding: 50px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #343a40;
+        }
+
+        /* Kártyák */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #007bff;
+        }
+        .card p {
+            margin: 10px 0;
+        }
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .card a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <!-- Regisztráció -->
+            <li th:if="${!isLoggedIn}">
+                <a href="/register">Regisztráció</a>
+            </li>
+
+            <!-- Belépés -->
+            <li th:if="${!isLoggedIn}">
+                <a href="/login">Belépés</a>
+            </li>
+
+            <!-- Kilépés -->
+            <li th:if="${isLoggedIn}">
+                <a href="/logout">Kilépés</a>
+            </li>
+
+            <!-- Admin oldal -->
+            <li th:if="${isLoggedIn and role == 'ADMIN'}">
+                <a href="/admin">Admin oldal</a>
+            </li>
+
+            <!-- Felhasználói adatok oldal -->
+            <li th:if="${isLoggedIn and (role == 'USER' or role == 'ADMIN')}">
+                <a href="/data">Moziműsorok</a>
+            </li>
+        </ul>
+        <div class="user-info" th:if="${isLoggedIn}">
+            Bejelentkezett felhasználó: <span th:text="${username}"></span>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero szekció -->
+    <div class="hero">
+        <h1>Üdvözlünk a MoziMűsorok Oldalán!</h1>
+        <p>Fedezd fel a legújabb filmeket, és vetítési időpontokat!</p>
+    </div>
+
+
+    <!-- Mozi információ -->
+    <section class="section">
+        <h2>Elérhető Mozik</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Mozi Név 1</h3>
+                <p>Cím: Budapest, Nagy Utca 5.</p>
+                <p>Telefon: +36-1-123-4567</p>
+                <a href="/data">Filmek</a>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

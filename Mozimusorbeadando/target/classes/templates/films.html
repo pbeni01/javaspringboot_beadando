@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmek</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    <h1>Jelenlegi Moziműsorok</h1>
+</header>
+<main>
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Cím</th>
+                <th>Műfaj</th>
+                <th>Hossz</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="film : ${films}">
+                <td th:text="${film.filmcim}"></td>
+                <td th:text="${film.mufaj}"></td>
+                <td th:text="${film.hossz}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>
