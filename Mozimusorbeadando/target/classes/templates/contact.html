@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kapcsolat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        .success {
+            color: green;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Kapcsolat</h1>
+</header>
+<main>
+    <div th:if="${successMessage}" class="success" th:text="${successMessage}"></div>
+    <form th:action="@{/contact}" method="post" th:object="${message}">
+        <label for="name">Név:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Adja meg a nevét">
+        <div th:if="${#fields.hasErrors('name')}" class="error" th:errors="*{name}"></div>
+
+        <label for="email">E-mail cím:</label>
+        <input type="email" id="email" th:field="*{email}" placeholder="Adja meg az e-mail címét">
+        <div th:if="${#fields.hasErrors('email')}" class="error" th:errors="*{email}"></div>
+
+        <label for="message">Üzenet:</label>
+        <textarea id="message" th:field="*{message}" placeholder="Írja be üzenetét"></textarea>
+        <div th:if="${#fields.hasErrors('message')}" class="error" th:errors="*{message}"></div>
+
+        <button type="submit">Küldés</button>
+    </form>
+
+
+
+
+
+</main>
+</body>
+</html>

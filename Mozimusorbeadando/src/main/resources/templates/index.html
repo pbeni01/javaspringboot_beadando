@@ -149,10 +149,14 @@
                 <a href="/admin">Admin oldal</a>
             </li>
 
-            <!-- Felhasználói adatok oldal -->
             <li th:if="${isLoggedIn and (role == 'USER' or role == 'ADMIN')}">
                 <a href="/data">Moziműsorok</a>
             </li>
+
+            <li th:if="${isLoggedIn and (role == 'USER' or role == 'ADMIN')}">
+                <a href="/contact">Kapcsolat</a>
+            </li>
+
         </ul>
         <div class="user-info" th:if="${isLoggedIn}">
             Bejelentkezett felhasználó: <span th:text="${username}"></span>
@@ -164,19 +168,37 @@
     <!-- Hero szekció -->
     <div class="hero">
         <h1>Üdvözlünk a MoziMűsorok Oldalán!</h1>
-        <p>Fedezd fel a legújabb filmeket, és vetítési időpontokat!</p>
+        <p>Fedezd fel a legújabb filmeket, vetítési időpontokat, és mozikat a környékeden!</p>
     </div>
 
+    <!-- Fő funkciók -->
+    <section class="section">
+        <h2>Mit kínálunk?</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Legújabb Filmek</h3>
+                <p>Fedezd fel a legfrissebb moziműsorokat és filmeket!</p>
+                <a href="/data">Fedezd fel</a>
+            </div>
+            <div class="card">
+                <h3>Kapcsolat</h3>
+                <p>Kérdéseid vannak? Vedd fel velünk a kapcsolatot!</p>
+                <a href="/contact">Írj nekünk</a>
+            </div>
+            <div class="card">
+                <h3>Adminisztráció</h3>
+                <p>Adminisztrátorok számára elérhető felület.</p>
+                <a href="/admin" th:if="${isLoggedIn and role == 'ADMIN'}">Tovább</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Mozi információ -->
     <section class="section">
-        <h2>Elérhető Mozik</h2>
+        <h2>Elérhető Filmek</h2>
         <div class="card-container">
             <div class="card">
-                <h3>Mozi Név 1</h3>
-                <p>Cím: Budapest, Nagy Utca 5.</p>
-                <p>Telefon: +36-1-123-4567</p>
-                <a href="/data">Filmek</a>
+                <a href="/data">Filmek megtekintése</a>
             </div>
         </div>
     </section>
