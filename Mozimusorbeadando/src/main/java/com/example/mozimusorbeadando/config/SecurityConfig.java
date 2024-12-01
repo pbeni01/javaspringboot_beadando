@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/register", "/css/**", "/js/**").permitAll() // Nyilvános oldalak
                         .requestMatchers("/admin").hasAuthority("ADMIN") // Csak az admin szerepűek érhetik el
-                        .requestMatchers("/data").hasAuthority("USER")
+                        .requestMatchers("/data").hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated() // Minden más oldal eléréséhez hitelesítés szükséges
                 )
                 .formLogin(form -> form
